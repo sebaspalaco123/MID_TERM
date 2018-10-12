@@ -1,0 +1,42 @@
+--- PARTE 2
+
+SENTENCIAS 
+CREATE SEQUENCE CLASE_EMPLEADO_SEQ START WITH 500 INCREMENT BY 1;
+CREATE SEQUENCE CAPTURAS_SEQ START WITH 50 INCREMENT 1;
+--CREATE TABLE 
+CREATE TABLE capturas (
+    "ID "               INTEGER NOT NULL,
+    fecha               DATE,
+    departamento        VARCHAR2(255),
+    municipio           VARCHAR2(255),
+    dia                 VARCHAR2 
+--  ERROR: VARCHAR2 size not specified 
+   ,
+    barrio              VARCHAR2(255),
+    zona                VARCHAR2(255),
+    clase_sitio         VARCHAR2(255),
+    edad                INTEGER,
+    sexo                VARCHAR2(255),
+    estado_civil        VARCHAR2(255),
+    clase_empleado_id   INTEGER,
+    "PROFESION "        VARCHAR2(255),
+    escolaridad         VARCHAR2(255),
+    delito              VARCHAR2(255)
+);
+
+ALTER TABLE capturas ADD CONSTRAINT capturas_pk PRIMARY KEY ( "ID " );
+
+CREATE TABLE clase_empleado (
+    id               INTEGER NOT NULL,
+    nombre           VARCHAR2(255) NOT NULL,
+    "CAPTURAS_ID "   INTEGER NOT NULL
+);
+
+ALTER TABLE clase_empleado ADD CONSTRAINT clase_empleado_pk PRIMARY KEY ( id );
+
+ALTER TABLE capturas
+    ADD CONSTRAINT capturas_clase_empleado_fk FOREIGN KEY ( clase_empleado_id )
+        REFERENCES clase_empleado ( id );
+        
+-- 
+PARTE 3
